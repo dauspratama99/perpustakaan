@@ -1,3 +1,4 @@
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" />
     <?php echo validation_errors(); echo $message;?>
@@ -33,7 +34,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label">Image</label>
         <div class="col-lg-10">
-            <img src="<?php echo base_url('assets/img/'.$buku['image']);?>" height="200px" width="200px">
+            <img src="<?php echo base_url('assets/img/buku/'.$buku['image']);?>" height="200px" width="200px">
         </div>
     </div>
     

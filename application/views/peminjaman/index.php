@@ -158,7 +158,7 @@
         
     })
 </script>
-
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
 <div class="panel panel-default">
     <div class="panel-body">
@@ -167,7 +167,7 @@
                 <div class="form-group">
                     <label class="col-lg-4 control-label">No. Transaksi</label>
                     <div class="col-lg-7">
-                        <input type="text" id="no" name="no" class="form-control" value="<?php echo $noauto;?>" readonly="readonly">
+                        <input type="text" id="no" name="no" class="form-control" value="<?= $kodeunik;?>" readonly="readonly">
                     </div>
                 </div>
                 
@@ -246,10 +246,7 @@
     </div>
 </div>
 
-
-
-
- <!-- Modal -->
+ <!-- Model -->
             <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -261,7 +258,7 @@
                         <div class="form-horizontal">
                             <label class="col-lg-3 control-label">Cari Nama Buku</label>
                             <div class="col-lg-5">
-                                <input type="text" name="caribuku" id="caribuku" class="form-control">
+                                <input type="text" name="caribuku" id="caribuku" class="form-control" placeholder="Masukan Judul Buku">
                             </div>
                         </div>
                         
@@ -271,6 +268,6 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="konfirmasi">Hapus</button>
                   </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                </div><!-- /.model-content -->
+              </div><!-- /.model-dialog -->
+            </div><!-- /.model -->

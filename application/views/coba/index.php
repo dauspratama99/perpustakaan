@@ -1,4 +1,4 @@
-
+<div class="form-group well">
 <div id="tampil"></div>
 
 

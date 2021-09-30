@@ -16,7 +16,7 @@
         })
     })
 </script>
-
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
 <div class="form-horizontal">
     <div class="form-group">

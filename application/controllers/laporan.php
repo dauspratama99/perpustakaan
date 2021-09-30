@@ -24,6 +24,10 @@
     
     function peminjaman(){
         $data['title']="Laporan Peminjaman";
+		$tanggal1=$this->input->post('tanggal1');
+        $tanggal2=$this->input->post('tanggal2');
+        $data['lap']=$this->m_laporan->semuaLaporan($tanggal1,$tanggal2)->result();
+		$data['buku']=$this->m_laporan->semuaBuku()->result();
         $this->template->display('laporan/peminjaman',$data);
     }
     

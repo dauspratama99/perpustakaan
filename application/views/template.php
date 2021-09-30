@@ -32,6 +32,7 @@
             </script>
         </head>
         <body>
+		<?php if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'):?>
             <?php echo $_header;?>
         
             
@@ -46,7 +47,18 @@
                     </div>
                 </div>
             </div>
-        
+			
+			<?php elseif($this->session->userdata('akses')=='3'):?>
+			<?php echo $_header;?>
+            
+            <div class="container">
+                <div class="row">                
+                    <div class="col-md-13">
+                        <?php echo $_content;?>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
         <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">

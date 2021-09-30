@@ -17,7 +17,7 @@
             </script>
         </head>
         <body>
-            <!--<img src="<?php echo base_url('assets/img/3.jpg');?>" height="140px" width="100%">-->
+            
             <!-- Static navbar -->
             <div class="navbar navbar-default">
                 <div class="container">
@@ -32,18 +32,19 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo site_url('web');?>"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                        <li><a href="<?php echo site_url('web/anggota');?>"><i class="glyphicon glyphicon-user"></i> Anggota</a></li>
+						<li><a href="<?php echo site_url('web/buku');?>"><i class="glyphicon glyphicon-book text-success"></i> Buku</a></li>
                     </ul>
                     <div class="nav navbar-nav navbar-right">
-                        <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('web/cari_buku');?>" method="post">
+                        <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('web/cari_anggota');?>" method="post">
                             <div class="form-group">
-                                <input type="text" name="cari" class="form-control" placeholder="Cari Buku">
+                                <input type="text" name="cari" class="form-control" placeholder="Cari Anggota">
                             </div>
                             <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Cari</button>
                         </form>
                     </div>
                 </div><!--/.nav-collapse -->
                 </div>
+				<img src="<?php echo base_url('assets/img/cover2.jpg');?>" height="170px" width="100%">
             </div>
 
             
@@ -100,7 +101,16 @@
                         </div>
                     </div>
                     <div class="col-md-8 ">
-                        <legend>Pencarian Buku</legend>
+					<div class="form-group well">
+                        <legend>Data Buku</legend>
+					<div class="nav navbar-nav navbar-right">
+						<form class="navbar-form navbar-left" role="search" action="<?php echo site_url('web/cari_buku');?>" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Cari Buku" name="cari">
+							</div>
+						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Cari</button>
+						</form>
+					</div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -112,10 +122,10 @@
                                     <td>Klasifikasi</td>
                                 </tr>
                             </thead>
-                            <?php $no=0; foreach($hasil as $row): $no++;?>
+                            <?php $no=0; foreach($buku as $row ): $no++;?>
                             <tr>
                                 <td><?php echo $no;?></td>
-                                <td><img src="<?php echo base_url('assets/img/'.$row->image);?>" width="100px" height="100px"></td>
+                                <td><img src="<?php echo base_url().'assets/img/buku/' .$row->image;?>" width="100px" height="100px"></td>
                                 <td><?php echo $row->kode_buku;?></td>
                                 <td><?php echo $row->judul;?></td>
                                 <td><?php echo $row->pengarang;?></td>
@@ -123,9 +133,9 @@
                             </tr>
                             <?php endforeach;?>
                         </table>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
     
             
             

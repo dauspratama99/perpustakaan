@@ -1,3 +1,4 @@
+<div class="form-group well">
 <table class="table table-striped">
     <thead>
         <tr>

@@ -17,8 +17,9 @@
             </script>
         </head>
         <body>
-            <!--<img src="<?php echo base_url('assets/img/3.jpg');?>" height="140px" width="100%">-->
+            <img src="<?php echo base_url('assets/img/3.jpg');?>" height="140px" width="100%">
             <!-- Static navbar -->
+			
             <div class="navbar navbar-default">
                 <div class="container">
                 <div class="navbar-header">
@@ -32,7 +33,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo site_url('web');?>"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                        <li class="active"><a href="<?php echo site_url('web/anggota');?>"><i class="glyphicon glyphicon-user"></i> Anggota</a></li>
+						<li><a href="<?php echo site_url('web/buku');?>"><i class="glyphicon glyphicon-book text-success"></i> Buku</a></li>
                     </ul>
                     <div class="nav navbar-nav navbar-right">
                         <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('web/cari_anggota');?>" method="post">
@@ -99,7 +100,9 @@
                             </div>
                         </div>
                     </div>
+					
                     <div class="col-md-8 ">
+					<div class="form-group well">
                         <legend>Data Anggota</legend>
                         <table class="table table-striped">
                             <thead>
@@ -115,7 +118,7 @@
                             <?php $no=0; foreach($anggota as $row): $no++;?>
                             <tr>
                                 <td><?php echo $no;?></td>
-                                <td><img src="<?php echo base_url('assets/img/anggota/'.$row->image);?>" width="100px" height="100px"></td>
+                                <td><img src="<?php echo base_url().'assets/img/anggota/'.$row->image;?>" width="100px" height="100px"></td>
                                 <td><?php echo $row->nis;?></td>
                                 <td><?php echo $row->nama;?></td>
                                 <td><?php echo $row->ttl;?></td>

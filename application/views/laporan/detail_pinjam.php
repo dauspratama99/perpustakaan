@@ -1,3 +1,4 @@
+<div class="form-group well">
 <legend>Detail Peminjaman</legend>
 <div class="col-md-6">
     <div class="form-horizontal">

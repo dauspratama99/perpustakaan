@@ -1,3 +1,5 @@
+<div class="form-group well">
+<legend><?php echo $title;?></legend>
 <div class="nav navbar-nav navbar-right">
     <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('buku/cari');?>" method="post">
         <div class="form-group">
@@ -7,7 +9,9 @@
         <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Cari</button>
     </form>
 </div>
+<?php if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'):?>
 <a href="<?php echo site_url('buku/tambah');?>" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
+<?php endif;?>
 <hr>
 <?php echo $message;?>
 <Table class="table table-striped">
@@ -25,13 +29,17 @@
     <?php $no=0; foreach($buku as $row ): $no++;?>
     <tr>
         <td><?php echo $no;?></td>
-        <td><img src="<?php echo base_url('assets/img/'.$row->image);?>" height="100px" width="100px"></td>
+        <td><img src="<?php echo base_url('assets/img/buku/'.$row->image);?>" height="100px" width="100px"></td>
         <td><?php echo $row->kode_buku;?></td>
         <td><?php echo $row->judul;?></td>
         <td><?php echo $row->pengarang;?></td>
         <td><?php echo $row->klasifikasi;?></td>
+<?php if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'):?>
         <td><a href="<?php echo site_url('buku/edit/'.$row->kode_buku);?>"><i class="glyphicon glyphicon-edit"></i></a></td>
+<?php endif;?>
+<?php if($this->session->userdata('akses')=='1'):?>
         <td><a href="#" class="hapus" kode="<?php echo $row->kode_buku;?>"><i class="glyphicon glyphicon-trash"></i></a></td>
+<?php endif;?>
     </tr>
     <?php endforeach;?>
 </Table>

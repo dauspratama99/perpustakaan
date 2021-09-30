@@ -1,3 +1,4 @@
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
 <?php echo validation_errors();?>
 <?php echo $message;?>
@@ -15,13 +16,31 @@
             <input type="text" name="nama" class="form-control" value="<?php echo $anggota['nama'];?>">
         </div>
     </div>
+	<div class="form-group">
+        <label class="col-lg-2 control-label">Username</label>
+        <div class="col-lg-5">
+            <input type="text" name="username" class="form-control" value="<?php echo $anggota['username'];?>" placeholder="username">
+        </div>
+    </div>
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">Password</label>
+        <div class="col-lg-5">
+            <input type="password" class="form-control" name="password" value="<?php echo $anggota['password'];?>" >
+        </div>
+    </div>
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-5">
+            <input type="text" class="form-control" name="email" value="<?php echo $anggota['email'];?>" placeholder="Email">
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Jenis Kelamin</label>
         <div class="col-lg-5">
             <select name="jk" class="form-control">
                 <option value="<?php echo $anggota['jk'];?>"><?php echo $anggota['jk'];?></option>
-                <option value="L">L</option>
-                <option value="P">P</option>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
             </select>
         </div>
     </div>
@@ -42,12 +61,6 @@
         <label class="col-lg-2 control-label">Image</label>
         <div class="col-lg-5">
             <img src="<?php echo base_url('assets/img/anggota/'.$anggota['image']);?>" width="200px" height="200px">
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label class="col-lg-2 control-label"></label>
-        <div class="col-lg-5">
             <input type="file" name="gambar" class="form-control">
         </div>
     </div>

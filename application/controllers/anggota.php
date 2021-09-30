@@ -39,17 +39,62 @@ class Anggota extends CI_Controller{
     }
     
     
-    function edit($id){
+    function tambah(){
+        $data['title']="Tambah Data Anggota";
+        $this->_set_rules();
+        if($this->form_validation->run()==true){
+            $nis=$this->input->post('nis');
+            $cek=$this->m_anggota->cek($nis);
+            if($cek->num_rows()>0){
+                $data['message']="<div class='alert alert-warning'>Nis sudah digunakan</div>";
+                $this->template->display('anggota/tambah',$data);
+            }else{
+                //setting konfiguras upload image
+                $config['upload_path'] = './assets/img/anggota/';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size']	= '1000';
+				$config['max_width']  = '2000';
+				$config['max_height']  = '1024';
+                
+                $this->upload->initialize($config);
+                if(!$this->upload->do_upload('gambar')){
+                    $gambar="";
+                }else{
+                    $gambar=$this->upload->file_name;
+                }
+                
+                $info=array(
+                    'nis'=>$this->input->post('nis'),
+                    'nama'=>$this->input->post('nama'),
+					'username'=>$this->input->post('username'),
+					'password'=>md5($this->input->post('password')),
+					'email'=>$this->input->post('email'),
+                    'jk'=>$this->input->post('jk'),
+                    'ttl'=>$this->input->post('ttl'),
+                    'kelas'=>$this->input->post('kelas'),
+                    'image'=>$gambar
+                );
+                $this->m_anggota->simpan($info);
+                redirect('anggota/index/add_success');
+            }
+        }else{
+            $data['message']="";
+            $this->template->display('anggota/tambah',$data);
+        }
+    }
+	
+	
+	function edit($id){
         $data['title']="Edit Data Anggota";
         $this->_set_rules();
         if($this->form_validation->run()==true){
             $nis=$this->input->post('nis');
             //setting konfiguras upload image
             $config['upload_path'] = './assets/img/anggota/';
-	    $config['allowed_types'] = 'gif|jpg|png';
-	    $config['max_size']	= '1000';
-	    $config['max_width']  = '2000';
-	    $config['max_height']  = '1024';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size']	= '1000';
+			$config['max_width']  = '2000';
+			$config['max_height']  = '1024';
                 
             $this->upload->initialize($config);
             if(!$this->upload->do_upload('gambar')){
@@ -60,11 +105,16 @@ class Anggota extends CI_Controller{
             
             $info=array(
                 'nama'=>$this->input->post('nama'),
-                'kelas'=>$this->input->post('kelas'),
+				'username'=>$this->input->post('user'),
+				'password'=>md5($this->input->post('password')),
+				'email'=>$this->input->post('email'),
+				'jk'=>$this->input->post('jk'),
                 'ttl'=>$this->input->post('ttl'),
-                'jk'=>$this->input->post('jk'),
+                'kelas'=>$this->input->post('kelas'),
                 'image'=>$gambar
             );
+			
+			
             //update data angggota
             $this->m_anggota->update($nis,$info);
             
@@ -78,48 +128,6 @@ class Anggota extends CI_Controller{
             $data['anggota']=$this->m_anggota->cek($id)->row_array();
             $data['message']="";
             $this->template->display('anggota/edit',$data);
-        }
-    }
-    
-    
-    function tambah(){
-        $data['title']="Tambah Data Anggota";
-        $this->_set_rules();
-        if($this->form_validation->run()==true){
-            $nis=$this->input->post('nis');
-            $cek=$this->m_anggota->cek($nis);
-            if($cek->num_rows()>0){
-                $data['message']="<div class='alert alert-warning'>Nis sudah digunakan</div>";
-                $this->template->display('anggota/tambah',$data);
-            }else{
-                //setting konfiguras upload image
-                $config['upload_path'] = './assets/img/anggota/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '1000';
-		$config['max_width']  = '2000';
-		$config['max_height']  = '1024';
-                
-                $this->upload->initialize($config);
-                if(!$this->upload->do_upload('gambar')){
-                    $gambar="";
-                }else{
-                    $gambar=$this->upload->file_name;
-                }
-                
-                $info=array(
-                    'nis'=>$this->input->post('nis'),
-                    'nama'=>$this->input->post('nama'),
-                    'jk'=>$this->input->post('jk'),
-                    'ttl'=>$this->input->post('ttl'),
-                    'kelas'=>$this->input->post('kelas'),
-                    'image'=>$gambar
-                );
-                $this->m_anggota->simpan($info);
-                redirect('anggota/index/add_success');
-            }
-        }else{
-            $data['message']="";
-            $this->template->display('anggota/tambah',$data);
         }
     }
     
@@ -151,6 +159,9 @@ class Anggota extends CI_Controller{
     function _set_rules(){
         $this->form_validation->set_rules('nis','NIS','required|max_length[10]');
         $this->form_validation->set_rules('nama','Nama','required|max_length[50]');
+		$this->form_validation->set_rules('username','username','required|min_length[5]');
+		$this->form_validation->set_rules('password','password','required|min_length[5]');
+		$this->form_validation->set_rules('email','Email','required|max_length[50]');
         $this->form_validation->set_rules('jk','Jenis Kelamin','required|max_length[2]');
         $this->form_validation->set_rules('ttl','Tanggal Lahir','required');
         $this->form_validation->set_rules('kelas','Kelas','required|max_length[10]');

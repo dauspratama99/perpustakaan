@@ -3,19 +3,22 @@ class M_Peminjaman extends CI_Model{
     private $table="transaksi";
     
     function nootomatis(){
-        $today=date('Ymd');
-        $query=mysql_query("select max(id_transaksi) as last from transaksi where id_transaksi like '$today%'");
-        $data=mysql_fetch_array($query);
-        $lastNoFaktur=$data['last'];
-        
-        $lastNoUrut=substr($lastNoFaktur,8,3);
-        
-        $nextNoUrut=$lastNoUrut+1;
-        
-        $nextNoTransaksi=$today.sprintf('%03s',$nextNoUrut);
-        
-        return $nextNoTransaksi;
-    }
+		$this->db->select('RIGHT(transaksi.id_transaksi,4) as kode', false);
+		$this->db->order_by('id_transaksi','desc');
+		$this->db->limit(1);
+		$query=$this->db->get('transaksi');
+		if($query->num_rows() <> 0){
+			//jika kode ternyata sudah ada.
+			$data = $query->row();
+			$kode = intval($data->kode) + 1;
+		}else{
+			//jika kode belum ada
+			$kode = 1;
+		}
+		$kodemax = str_pad($kode,4,"0",STR_PAD_LEFT); //angka 4 menunjukkan jumlah digit angka 0
+		$kodejadi = "KN".$kodemax; // hasil KN-0001 dst.
+		return $kodejadi;
+	}
     
     function getAnggota(){
         return $this->db->get("anggota");

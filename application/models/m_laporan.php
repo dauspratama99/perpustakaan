@@ -9,6 +9,10 @@ class M_Laporan extends CI_Model{
     function semuaBuku(){
         return $this->db->get("buku");
     }
+	
+	function semuaLaporan(){
+		return $this->db->get("transaksi");
+	}
     
     function detailpeminjaman($tanggal1,$tanggal2){
         return $this->db->query("select * from transaksi where tanggal_pinjam between '$tanggal1' and '$tanggal2' group by id_transaksi");
@@ -21,6 +25,7 @@ class M_Laporan extends CI_Model{
         $this->db->join("buku","buku.kode_buku=transaksi.kode_buku");
         return $this->db->get();
     }
+	
     
     function detailpengembalian($tanggal1,$tanggal2){
         return $this->db->query("select * from pengembalian where tgl_pengembalian between '$tanggal1' and '$tanggal2' group by id_transaksi");

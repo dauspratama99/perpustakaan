@@ -1,3 +1,4 @@
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
 <table class="table table-striped">
     <thead>

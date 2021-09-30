@@ -1,3 +1,4 @@
+<div class="form-group well">
 <div class="nav navbar-nav navbar-right">
     <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('buku/cari');?>" method="post">
         <div class="form-group">
@@ -14,6 +15,7 @@
     <thead>
         <tr>
             <td>No.</td>
+			<td>Image</td>
             <td>Kode Buku</td>
             <td>Judul</td>
             <td>Pengarang</td>
@@ -24,6 +26,7 @@
     <?php $no=0; foreach($buku as $row ): $no++;?>
     <tr>
         <td><?php echo $no;?></td>
+		<td><img src="<?php echo base_url('assets/img/buku/'.$row->image);?>" height="100px" width="100px"></td>
         <td><?php echo $row->kode_buku;?></td>
         <td><?php echo $row->judul;?></td>
         <td><?php echo $row->pengarang;?></td>

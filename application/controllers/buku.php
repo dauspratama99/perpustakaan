@@ -51,7 +51,7 @@ class Buku extends CI_Controller{
             }else{ // jika kode buku belum ada, maka simpan
                 
                 //setting konfiguras upload image
-                $config['upload_path'] = './assets/img/';
+                $config['upload_path'] = './assets/img/buku/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '1000';
 		$config['max_width']  = '2000';
@@ -88,7 +88,7 @@ class Buku extends CI_Controller{
             $kode=$this->input->post('kode');
             
             //setting konfiguras upload image
-            $config['upload_path'] = './assets/img/';
+            $config['upload_path'] = './assets/img/buku/';
 	    $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size']	= '1000';
 	    $config['max_width']  = '2000';
@@ -123,7 +123,7 @@ class Buku extends CI_Controller{
         $kode=$this->input->post('kode');
         $detail=$this->m_buku->cek($kode)->result();
 	foreach($detail as $det):
-	    unlink("assets/img/".$det->image);
+	    unlink("assets/img/buku/".$det->image);
 	endforeach;
         $this->m_buku->hapus($kode);
     }

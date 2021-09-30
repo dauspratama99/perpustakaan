@@ -1,6 +1,8 @@
+<div class="form-group well">
 <legend><?php echo $title;?></legend>
-<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" />
-    <?php echo validation_errors(); echo $message;?>
+<?php echo validation_errors(); echo $message;?>
+
+	<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" />
     <div class="form-group">
         <label class="col-lg-2 control-label">Kode Buku</label>
         <div class="col-lg-5">
@@ -41,3 +43,4 @@
         <a href="<?php echo site_url('buku');?>" class="btn btn-default">Kembali</a>
     </div>
 </form>
+</div>

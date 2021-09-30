@@ -21,6 +21,11 @@ class M_anggota extends CI_Model{
         
         return $query;
     }
+	
+	function cekAnggota($username,$password){
+        $query=$this->db->query("SELECT * FROM anggota WHERE username='$username' AND password=MD5('$password') LIMIT 1");
+        return $query;
+    }
     
     function simpan($jenis){
         $this->db->insert($this->table,$jenis);

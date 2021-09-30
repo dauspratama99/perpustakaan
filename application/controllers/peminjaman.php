@@ -15,7 +15,7 @@ class Peminjaman extends CI_Controller{
         $data['title']="Transaksi Peminjaman";
         $data['tanggalpinjam']=date('Y-m-d');
         $data['tanggalkembali'] = strtotime('+7 day',strtotime($data['tanggalpinjam']));
-        $data['noauto']=$this->m_peminjaman->nootomatis();
+        $data['kodeunik']=$this->m_peminjaman->nootomatis();
         $data['anggota']=$this->m_peminjaman->getAnggota()->result();
         $data['tanggalkembali'] = date('Y-m-d', $data['tanggalkembali']);
         $this->template->display('peminjaman/index',$data);
@@ -85,7 +85,15 @@ class Peminjaman extends CI_Controller{
     
     function pencarianbuku(){
         $cari=$this->input->post('caribuku');
-        $data['buku']=$this->m_peminjaman->pencarianbuku($cari)->result();
-        $this->load->view('peminjaman/pencarianbuku',$data);
-    }
+		$cek=$this->m_peminjaman->pencarianbuku($cari);
+		if($cek->num_rows()>0){
+			$data["message"]="";
+			$data['buku']=$cek->result();
+			$this->load->view('peminjaman/pencarianbuku',$data);
+		}else{
+			$this->session->set_flashdata('message',"<div class='alert alert-success'>Data tidak ditemukan</div>");
+			$data['buku']=$cek->result();
+			$this->load->view('peminjaman/pencarianbuku',$data);
+		}
+	}
 }
